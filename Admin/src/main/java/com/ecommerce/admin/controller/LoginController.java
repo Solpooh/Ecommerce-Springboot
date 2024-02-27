@@ -23,22 +23,26 @@ public class LoginController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
     @GetMapping("/login")
-    public String loginForm() {
+    public String loginForm(Model model) {
+        model.addAttribute("title", "로그인");
         return "login";
     }
 
     @RequestMapping("/index")
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("title", "홈페이지");
         return "index";
     }
 
     @GetMapping("/register")
     public String register(Model model) {
+        model.addAttribute("title", "회원가입");
         model.addAttribute("adminDto", new AdminDto());
         return "register";
     }
     @GetMapping("/forgot-password")
     public String forgotPassword(Model model) {
+        model.addAttribute("title", "비밀번호 찾기");
         return "forgot-password";
     }
     @PostMapping("/register-new")

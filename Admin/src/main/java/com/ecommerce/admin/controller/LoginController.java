@@ -38,10 +38,8 @@ public class LoginController {
     @PostMapping("/register-new")
     public String addNewAdmin(@Valid @ModelAttribute("adminDto")AdminDto adminDto,
                               BindingResult result,
-                              Model model,
-                              HttpSession session) {
+                              Model model) {
         try {
-            session.removeAttribute("message");
             if (result.hasErrors()) {
                 model.addAttribute("adminDto", adminDto);
                 result.toString();
@@ -52,18 +50,19 @@ public class LoginController {
             if(admin != null) {
                 model.addAttribute("adminDto", adminDto);
                 System.out.println("admin not null");
-                session.setAttribute("message", "이미 등록된 이메일입니다!");
+                model.addAttribute("emailError", "이미 등록된 이메일입니다");
                 return "register";
             }
             if (adminDto.getPassword().equals(adminDto.getRepeatPassword())) {
                 adminDto.setPassword(passwordEncoder.encode(adminDto.getPassword()));
                 adminService.save(adminDto);
                 System.out.println("success");
-                session.setAttribute("message", "회원가입 완료!!");
+                model.addAttribute("success", "회원가입 완료!!");
                 model.addAttribute("adminDto", adminDto);
             } else {
                 model.addAttribute("adminDto", adminDto);
-                session.setAttribute("message", "비밀번호가 일치하지 않습니다");
+                model.addAttribute("passwordError", "비밀번호를 다시 확인해주세요");
+
                 System.out.println("password not same");
                 return "redirect:/register";
             }
@@ -71,7 +70,7 @@ public class LoginController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            session.setAttribute("message", "에러 !! 잠시 후 다시 시도해주세요");
+            model.addAttribute("errors", "에러발생 !! 잠시 후 다시 시도해주세요");
         }
         return "register";
     }

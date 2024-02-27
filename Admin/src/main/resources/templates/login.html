@@ -44,7 +44,7 @@
                                     <div th:if="${param.error}" class="alert alert-danger text-center">
                                         유효하지 않은 id 또는 비밀번호 입니다.
                                     </div>
-                                    <div th:if="${param.logout}" class="alert alert-danger text-center">
+                                    <div th:if="${param.logout}" class="alert alert-success text-center">
                                         로그아웃 완료.
                                     </div>
                                     <form class="user" th:action="@{/do-login}" method="post">

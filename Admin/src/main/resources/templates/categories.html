@@ -26,22 +26,33 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col">Category Index</th>
-                        <th scope="col">Category Name</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div th:if="${size == 0}">
+                        <p>카테고리 없음</p>
+                    </div>
+
+                    <table class="table table-bordered" th:if="${size > 0}">
+                        <thead>
+                        <tr>
+                            <th scope="col">Category Index</th>
+                            <th scope="col">Category Name</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- container-fluid -->
+
+            </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->
@@ -63,8 +74,7 @@
 
 
     <!-- Bootstrap core JavaScript-->
-        <div th:replace="~{fragments::script}"></div>
-    </div>
+    <div th:replace="~{fragments::script}"></div>
 </body>
 
 </html>

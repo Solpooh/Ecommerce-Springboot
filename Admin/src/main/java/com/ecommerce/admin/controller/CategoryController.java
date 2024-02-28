@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -37,6 +35,27 @@ public class CategoryController {
         catch (Exception e) {
             e.printStackTrace();
             attributes.addFlashAttribute("failed", "추가 실패");
+        }
+        return "redirect:/categories";
+    }
+
+    @RequestMapping(value = "/findById", method = {RequestMethod.PUT, RequestMethod.GET})
+    @ResponseBody
+    public Category findById(Long id) {
+        return categoryService.findById(id);
+    }
+
+    @GetMapping("/update-category")
+    public String update(Category category, RedirectAttributes attributes) {
+        try {
+            categoryService.update(category);
+            attributes.addFlashAttribute("success", "수정 완료!!");
+        } catch (DataIntegrityViolationException e) {
+            e.printStackTrace();
+            attributes.addFlashAttribute("failed", "이름 중복");
+        } catch (Exception e) {
+            e.printStackTrace();
+            attributes.addFlashAttribute("failed", "서버 에러!");
         }
         return "redirect:/categories";
     }

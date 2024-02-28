@@ -43,8 +43,9 @@
                     <table class="table table-bordered" th:if="${size > 0}">
                         <thead>
                         <tr>
-                            <th scope="col">Category Index</th>
-                            <th scope="col">Category Name</th>
+                            <th scope="col">번호</th>
+                            <th scope="col">카테고리 이름</th>
+                            <th scope="col">카테고리 수정</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
@@ -52,7 +53,9 @@
                         <tr th:each="category : ${categories}">
                             <th scope="row" th:text="${category.id}"></th>
                             <td th:text="${category.name}"></td>
-                            <td></td>
+                            <td>
+                                <a id="editButton" th:href="@{/findById(id=${category.id})}" class="btn btn-primary">수정</a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -102,8 +105,36 @@
         </form>
     </div>
     <!-- end Modal -->
+    <!-- Change Name category Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalExample" aria-hidden="true">
+        <form th:action="@{/update-category}" method="put">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">새 카테고리</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="idEdit" class="col-form-label">Id:</label>
+                            <input type="text" class="form-control" id="idEdit" name="id" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nameEdit" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="nameEdit" name="name">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                        <button type="submit" class="btn btn-primary">등록</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
     <!-- Bootstrap core JavaScript-->
     <div th:replace="~{fragments::script}"></div>
+<script th:src="@{/js/categories.js}"></script>
 </body>
 
 </html>

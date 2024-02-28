@@ -19,10 +19,14 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category save(Category category) {
-        Category categorySave = new Category(category.getName());
-        return repo.save(categorySave);
+        try {
+            Category categorySave = new Category(category.getName());
+            return repo.save(categorySave);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
-
 //    @Override DEPRECATED
 //    public Category getById(Long id) {
 //        return repo.getById(id);

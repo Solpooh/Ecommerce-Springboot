@@ -32,7 +32,7 @@
                     <div th:if="${size == 0}">
                         <p>카테고리 없음</p>
                     </div>
-
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">카테고리 추가</button>
                     <table class="table table-bordered" th:if="${size > 0}">
                         <thead>
                         <tr>
@@ -72,7 +72,29 @@
 
     <!-- Logout Modal-->
 
-
+    <!-- add Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form th:action="@{/add-category}" method="post" th:object="${categoryNew}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">새 카테고리</h5>
+                </div>
+                <div class="modal-body">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Recipient:</label>
+                            <input type="text" class="form-control" th:field="*{name}" id="recipient-name">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary">등록</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+    <!-- end Modal -->
     <!-- Bootstrap core JavaScript-->
     <div th:replace="~{fragments::script}"></div>
 </body>

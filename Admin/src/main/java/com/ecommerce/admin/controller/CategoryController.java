@@ -59,4 +59,18 @@ public class CategoryController {
         }
         return "redirect:/categories";
     }
+
+    @RequestMapping(value = "/delete-category", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String delete(Long id, RedirectAttributes attributes) {
+        try {
+            categoryService.deleteById(id);
+            attributes.addFlashAttribute("success", "삭제 완료");
+        } catch (Exception e) {
+            e.printStackTrace();
+            attributes.addFlashAttribute("failed", "삭제 실패");
+        }
+        return "redirect:/categories";
+    }
+
+
 }

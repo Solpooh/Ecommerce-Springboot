@@ -3,6 +3,7 @@ package com.ecommerce.admin.controller;
 import com.ecommerce.library.model.Category;
 import com.ecommerce.library.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +31,10 @@ public class CategoryController {
         try {
             categoryService.save(category);
             attributes.addFlashAttribute("success", "추가 성공");
-        } catch (Exception e) {
+        } catch (DataIntegrityViolationException e) {
+            attributes.addAttribute("failed", "이름 중복!!");
+        }
+        catch (Exception e) {
             e.printStackTrace();
             attributes.addFlashAttribute("failed", "추가 실패");
         }

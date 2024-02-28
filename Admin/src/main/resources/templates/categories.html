@@ -33,6 +33,13 @@
                         <p>카테고리 없음</p>
                     </div>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">카테고리 추가</button>
+                    <div th:if="${success}" class="text-center alert alert-success">
+                        <p th:text="${success}"></p>
+                    </div>
+                    <div th:if="${failed}" class="text-center alert alert-danger">
+                        <p th:text="${failed}"></p>
+                    </div>
+
                     <table class="table table-bordered" th:if="${size > 0}">
                         <thead>
                         <tr>
@@ -42,10 +49,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
+                        <tr th:each="category : ${categories}">
+                            <th scope="row" th:text="${category.id}"></th>
+                            <td th:text="${category.name}"></td>
+                            <td></td>
                         </tr>
                         </tbody>
                     </table>
@@ -88,7 +95,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary">등록</button>
+                    <button type="submit" class="btn btn-primary">등록</button>
                 </div>
             </div>
         </div>

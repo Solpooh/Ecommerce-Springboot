@@ -72,5 +72,16 @@ public class CategoryController {
         return "redirect:/categories";
     }
 
+    @RequestMapping(value = "/enable-category", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String enable(Long id, RedirectAttributes attributes) {
+        try {
+            categoryService.enabledById(id);
+            attributes.addFlashAttribute("success", "활성화 완료");
+        } catch (Exception e) {
+            e.printStackTrace();
+            attributes.addFlashAttribute("failed", "활성화 실패");
+        }
+        return "redirect:/categories";
+    }
 
 }

@@ -57,8 +57,8 @@
                                 <a id="editButton" th:href="@{/findById(id=${category.id})}" class="btn btn-primary">수정</a>
                             </td>
                             <td>
-                                <a th:href="@{/delete-category(id=${category.id})}" class="btn btn-warning">삭제</a>
-                                <a th:href="@{/enable-category(id=${category.id})}" class="btn btn-primary">활성화</a>
+                                <a th:if = "${category.is_activated} == true" th:href="@{/delete-category(id=${category.id})}" class="btn btn-warning">삭제</a>
+                                <a th:if = "${category.is_activated} == false" th:href="@{/enable-category(id=${category.id})}" class="btn btn-primary">활성화</a>
                             </td>
                         </tr>
                         </tbody>

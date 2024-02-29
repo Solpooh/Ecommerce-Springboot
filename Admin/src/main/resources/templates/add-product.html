@@ -58,6 +58,12 @@
               <label class="col-md-4 control-label" for="categories">상품 카테고리</label>
               <div class="col-md-4">
                 <select id="categories" name="categories" class="form-control">
+                  <option>선택</option>
+                  <option th:each="category : ${categories}"
+                          th:value="${category.id}"
+                          th:text="${category.name}">
+                  </option>
+
                 </select>
               </div>
             </div>
@@ -90,8 +96,8 @@
                     <input id="imageProduct" name="imageProduct" class="input-file" type="file">
                   </div>
                 </div>
-                <!-- File Button -->
           </fieldset>
+          <button type="submit" class="btn btn-primary">저장</button>
         </form>
       </div>
       <!-- container-fluid -->

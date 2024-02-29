@@ -1,6 +1,8 @@
 package com.ecommerce.admin.controller;
 
 import com.ecommerce.library.dto.ProductDto;
+import com.ecommerce.library.model.Category;
+import com.ecommerce.library.service.CategoryService;
 import com.ecommerce.library.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,8 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CategoryService categoryService;
 
     @GetMapping("/products")
     public String products(Model model, Principal principal) {
@@ -30,7 +34,9 @@ public class ProductController {
     }
     @GetMapping("/add-product")
     public String addProductForm(Model model) {
+        List<Category> categories = categoryService.findAllByActivated();
         model.addAttribute("product", new ProductDto());
+        model.addAttribute("categories", categories);
         return "add-product";
     }
 }

@@ -29,7 +29,7 @@
       <div class="container-fluid">
 
         <!-- Page Heading -->
-        <form class="form-horizontal">
+        <form class="form-horizontal" th:action="@{/save-product}" method="post" enctype="multipart/form-data" th:object="${product}">
           <fieldset>
 
             <!-- Form Name -->
@@ -39,7 +39,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="product_name">상품 이름</label>
               <div class="col-md-4">
-                <input id="product_name" name="product_name" class="form-control input-md" required="" type="text">
+                <input id="product_name" th:field="*{name}" name="product_name" class="form-control input-md" required="" type="text">
 
               </div>
             </div>
@@ -48,7 +48,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="description">상품 설명</label>
               <div class="col-md-4">
-                <input id="description" name="description" class="form-control input-md" required="" type="text">
+                <input id="description" th:field="*{description}" name="description" class="form-control input-md" required="" type="text">
 
               </div>
             </div>
@@ -57,8 +57,8 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="categories">상품 카테고리</label>
               <div class="col-md-4">
-                <select id="categories" name="categories" class="form-control">
-                  <option>선택</option>
+                <select id="categories" th:field="*{category}" name="categories" class="form-control">
+                  <option th:value="null">-선택-</option>
                   <option th:each="category : ${categories}"
                           th:value="${category.id}"
                           th:text="${category.name}">
@@ -72,7 +72,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="available_quantity">상품 수량</label>
               <div class="col-md-4">
-                <input id="available_quantity" name="available_quantity" class="form-control input-md" required="" type="text">
+                <input id="available_quantity" th:field="*{currentQuantity}" name="available_quantity" class="form-control input-md" required="" type="text">
 
               </div>
             </div>
@@ -81,7 +81,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="price">상품 가격</label>
               <div class="col-md-4">
-                <input id="price" name="price" class="form-control input-md" required="" type="text">
+                <input id="price" name="price" th:field="*{costPrice}" class="form-control input-md" required="" type="text">
 
               </div>
             </div>
@@ -93,6 +93,7 @@
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="imageProduct">상품 이미지</label>
                   <div class="col-md-4">
+                    <!-- name="imageProduct" == @RequestParam("imageProduct") -->
                     <input id="imageProduct" name="imageProduct" class="input-file" type="file">
                   </div>
                 </div>

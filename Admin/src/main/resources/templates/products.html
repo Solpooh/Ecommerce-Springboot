@@ -32,6 +32,7 @@
         <div th:if="${size == 0}">
           <p>상품이 없습니다.</p>
         </div>
+        <a class="btn btn-primary" th:href="@{/add-product}">새 상품 추가</a>
         <table class="table table-striped" th:if="${size > 0}">
           <thead>
           <tr>

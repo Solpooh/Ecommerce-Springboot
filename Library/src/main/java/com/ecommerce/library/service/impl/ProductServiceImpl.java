@@ -122,7 +122,7 @@ public class ProductServiceImpl implements ProductService {
         productDto.setDeleted(product.is_deleted());
         productDto.setActivated(product.is_activated());
 
-        return null;
+        return productDto;
 
     }
 

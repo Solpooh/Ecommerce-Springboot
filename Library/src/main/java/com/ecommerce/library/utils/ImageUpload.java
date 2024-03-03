@@ -15,9 +15,10 @@ public class ImageUpload {
     public boolean uploadImage(MultipartFile imageProduct) {
         boolean isUpload = false;
         try {
+            // 입력 스트림에서 읽어들인 데이터를 목표 경로에 있는 파일로 복사
             Files.copy(imageProduct.getInputStream(),
                     Paths.get(UPLOAD_FOLDER + File.separator, imageProduct.getOriginalFilename()),
-                    StandardCopyOption.REPLACE_EXISTING);
+                    StandardCopyOption.REPLACE_EXISTING);  // 파일 덮어쓰기 옵션
             isUpload = true;
         } catch (Exception e) {
             e.printStackTrace();

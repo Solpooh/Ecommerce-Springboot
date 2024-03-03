@@ -24,11 +24,6 @@ public class CategoryServiceImpl implements CategoryService {
         return repo.save(categorySave);
     }
 
-//    @Override DEPRECATED
-//    public Category getById(Long id) {
-//        return repo.getById(id);
-//    }
-
     @Override
     public Category findById(Long id) {
         return repo.findById(id).get();

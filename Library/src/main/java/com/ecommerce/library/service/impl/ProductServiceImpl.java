@@ -76,8 +76,7 @@ public class ProductServiceImpl implements ProductService {
                 product.setImage(product.getImage());
             } else {
                 if (imageUpload.checkExisted(imageProduct) == false) {
-                    System.out.println("Upload to folder");
-//                    imageUpload.uploadImage(imageProduct);
+                    imageUpload.uploadImage(imageProduct);
                 }
                 System.out.println("Image existed");
                 product.setImage(Base64.getEncoder().encodeToString(imageProduct.getBytes()));
@@ -89,8 +88,7 @@ public class ProductServiceImpl implements ProductService {
             product.setCurrentQuantity(productDto.getCurrentQuantity());
             product.setCategory(productDto.getCategory());
 
-            return product;
-//            return productRepository.save(product);
+            return productRepository.save(product);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

@@ -92,6 +92,7 @@
                                 <!-- File Button -->
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="imageProduct">상품 이미지</label>
+                                    <img style="height: 40px; width: 40px;" th:src="*{'data: image/jpeg; base64,' + {image}}">
                                     <div class="col-md-4">
                                         <!-- name="imageProduct" == @RequestParam("imageProduct") -->
                                         <input id="imageProduct" name="imageProduct" class="input-file" type="file">

@@ -59,7 +59,10 @@
             <td th:text="${product.currentQuantity}"></td>
             <td><img src="" style="height: 40px; width: 40px;" th:src="*{'data:image/jpeg;base64,' + {product.image}}"></td>
             <td><a th:href="@{/update-product/{id} (id = ${product.id})}" class="btn btn-primary">수정</a> </td>
-            <td></td>
+            <td>
+              <a th:if = "${product.activated == false}" th:href="@{/enabled-product/{id} (id = ${product.id})}" class="btn btn-warning">상품 복구</a>
+              <a th:if = "${product.deleted == false}" th:href="@{/delete-product/{id} (id = ${product.id})}" class="btn btn-danger">상품 삭제</a>
+            </td>
           </tr>
           </tbody>
         </table>

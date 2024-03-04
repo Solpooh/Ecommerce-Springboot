@@ -78,7 +78,6 @@ public class ProductServiceImpl implements ProductService {
                 if (imageUpload.checkExisted(imageProduct) == false) {
                     imageUpload.uploadImage(imageProduct);
                 }
-                System.out.println("Image existed");
                 product.setImage(Base64.getEncoder().encodeToString(imageProduct.getBytes()));
             }
             product.setName(productDto.getName());
@@ -97,12 +96,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteById(Long id) {
-
+        Product product = productRepository.getReferenceById(id);
+        product.set_deleted(true);
+        product.set_activated(false);
+        productRepository.save(product);
     }
 
     @Override
     public void enableById(Long id) {
-
+        Product product = productRepository.getReferenceById(id);
+        product.set_activated(true);
+        product.set_deleted(false);
+        productRepository.save(product);
     }
 
     @Override

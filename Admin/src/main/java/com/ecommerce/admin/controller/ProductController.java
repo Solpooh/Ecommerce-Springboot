@@ -88,4 +88,28 @@ public class ProductController {
         }
         return "redirect:/products";
     }
+
+    @RequestMapping(value = "/enabled-product/{id}", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String enabledProduct(@PathVariable("id") Long id, RedirectAttributes attributes) {
+        try {
+            productService.enableById(id);
+            attributes.addFlashAttribute("success", "상품 복구 완료!!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            attributes.addFlashAttribute("error", "상품 복구 실패");
+        }
+        return "redirect:/products";
+    }
+
+    @RequestMapping(value = "/delete-product/{id}", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String deletedProduct(@PathVariable("id") Long id, RedirectAttributes attributes) {
+        try {
+            productService.deleteById(id);
+            attributes.addFlashAttribute("success", "삭제 완료!!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            attributes.addFlashAttribute("error", "삭제 실패");
+        }
+        return "redirect:/products";
+    }
 }

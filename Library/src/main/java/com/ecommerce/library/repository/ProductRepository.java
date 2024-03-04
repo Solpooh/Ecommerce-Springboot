@@ -11,4 +11,8 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("select p from Product p")
     Page<Product> pageProduct(Pageable pageable);
+
+    // 위치 기반 파라미터
+    @Query("select p from Product p where p.description like %?1% or p.name like %?1%")
+    Page<Product> searchProducts(String keyword, Pageable pageable);
 }

@@ -28,12 +28,6 @@
       <!-- Begin Page Content -->
       <div class="container-fluid">
 
-        <div>
-          <form th:action="@{/search-result/0}" method="get">
-            <input type="text" id="search" name="keyword" placeholder="상품 검색">
-            <button type="submit" class="btn btn-primary">검색</button>
-          </form>
-        </div>
         <!-- Page Heading -->
         <div th:if="${size == 0}">
           <p>상품이 없습니다.</p>

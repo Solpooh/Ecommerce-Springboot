@@ -139,4 +139,11 @@ public class ProductServiceImpl implements ProductService {
         return productPages;
     }
 
+    @Override
+    public Page<Product> searchProducts(int pageNo, String keyword) {
+        Pageable pageable = PageRequest.of(pageNo, 5);
+        Page<Product> products = productRepository.searchProducts(keyword, pageable);
+        return products;
+    }
+
 }

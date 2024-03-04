@@ -6,6 +6,9 @@ import com.ecommerce.library.repository.ProductRepository;
 import com.ecommerce.library.service.ProductService;
 import com.ecommerce.library.utils.ImageUpload;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -127,6 +130,13 @@ public class ProductServiceImpl implements ProductService {
 
         return productDto;
 
+    }
+
+    @Override
+    public Page<Product> pageProducts(int pageNo) {
+        Pageable pageable = PageRequest.of(pageNo, 5);
+        Page<Product> productPages = productRepository.pageProduct(pageable);
+        return productPages;
     }
 
 }

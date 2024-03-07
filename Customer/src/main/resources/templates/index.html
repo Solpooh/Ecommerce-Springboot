@@ -17,7 +17,7 @@
     <!-- End Main Top -->
 
     <!-- Start Main Top -->
-    <header th:replace="~{fragments::main-top}">
+    <header th:replace="~{fragments::main-header}">
 
     </header>
     <!-- End Main Top -->
@@ -55,7 +55,7 @@
         </div>
 
         <div class="row special-list">
-            <div class="col-lg-3 col-md-6 special-grid best-seller">
+            <!--<div class="col-lg-3 col-md-6 special-grid best-seller">
                 <div class="products-single fix">
                     <div class="box-img-hover">
                         <img src="" alt="Image">
@@ -72,11 +72,10 @@
                         <h5></h5>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 special-grid">
-                <div class="products-single fix" th:each="product : ${products}"
-                     th:if="${product.category.name == category.name}">
+            </div>-->
+            <div class="col-lg-3 col-md-6 special-grid" th:each="product : ${products}"
+                 th:if="${product.category.name == category.name}">
+                <div class="products-single fix">
                     <div class="box-img-hover">
                         <img th:src="@{'data:image/jpeg;base64,' + ${product.image}}" class="img-fluid" alt="Image">
                         <div class="mask-icon">

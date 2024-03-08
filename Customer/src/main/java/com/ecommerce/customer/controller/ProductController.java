@@ -1,6 +1,7 @@
 package com.ecommerce.customer.controller;
 
 import com.ecommerce.library.model.Product;
+import com.ecommerce.library.service.CategoryService;
 import com.ecommerce.library.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     // shop detail
     @GetMapping("/products")
     public String products(Model model) {
@@ -27,9 +31,13 @@ public class ProductController {
     }
 
     @GetMapping("/find-product/{id}")
-    public String findProductById(@PathVariable("id") Long id, Model model) {
+    public String findProductById(@PathVariable("id") Long id, Model model){
         Product product = productService.getProductById(id);
+        Long categoryId = product.getCategory().getId();
+        List<Product>  products = productService.getRelatedProducts(categoryId);
+        System.out.println(products);
         model.addAttribute("product", product);
+        model.addAttribute("products", products);
         return "product-detail";
     }
 }

@@ -29,4 +29,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // JPQL(QueryDSL) 과 nativeQuery의 차이점 ??
     @Query(value = "select * from products p where p.is_deleted = false and p.is_activated = true order by rand() asc limit 4 ", nativeQuery = true)
     List<Product> listViewProducts();
+
+    @Query(value = "select * from products p inner join categories c on c.category_id = p.category_id where p.category_id = ?1", nativeQuery = true)
+    List<Product> getRelatedProducts(Long categoryId);
+
 }

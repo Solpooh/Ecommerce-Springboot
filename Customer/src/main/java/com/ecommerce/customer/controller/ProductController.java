@@ -1,5 +1,6 @@
 package com.ecommerce.customer.controller;
 
+import com.ecommerce.library.dto.CategoryDto;
 import com.ecommerce.library.model.Product;
 import com.ecommerce.library.service.CategoryService;
 import com.ecommerce.library.service.ProductService;
@@ -22,9 +23,12 @@ public class ProductController {
     // shop detail
     @GetMapping("/products")
     public String products(Model model) {
+        // 카테고리 분류별 List
+        List<CategoryDto> categoryDtoList = categoryService.getCategoryAndProduct();
         List<Product> products = productService.getAllProducts();
         List<Product> listViewProducts = productService.listViewProducts();
 
+        model.addAttribute("categories", categoryDtoList);
         model.addAttribute("viewProducts", listViewProducts);
         model.addAttribute("products", products);
         return "shop";

@@ -35,7 +35,6 @@ public class ProductController {
         Product product = productService.getProductById(id);
         Long categoryId = product.getCategory().getId();
         List<Product>  products = productService.getRelatedProducts(categoryId);
-        System.out.println(products);
         model.addAttribute("product", product);
         model.addAttribute("products", products);
         return "product-detail";

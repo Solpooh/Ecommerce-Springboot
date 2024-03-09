@@ -2,6 +2,7 @@ package com.ecommerce.library.repository;
 
 import com.ecommerce.library.dto.CategoryDto;
 import com.ecommerce.library.model.Category;
+import com.ecommerce.library.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,8 +16,11 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     /* Customer */
 
-    @Query("select new com.ecommerce.library.dto.CategoryDto(c.id, c.name, count(p.category.id)) from Category c inner join Product p on p.category.id = c.id" +
-    " where c.is_activated = true and c.is_deleted = false ")
+    @Query("select new com.ecommerce.library.dto.CategoryDto(c.id, c.name, count(p.category.id)) " +
+            "from Category c inner join Product p on p.category.id = c.id " +
+            "where c.is_activated = true and c.is_deleted = false " +
+            "group by c.id, c.name")
     List<CategoryDto> getCategoryAndProduct();
+
 
 }

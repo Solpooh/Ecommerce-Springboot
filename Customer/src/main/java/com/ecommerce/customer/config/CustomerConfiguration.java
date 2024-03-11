@@ -49,6 +49,7 @@ public class CustomerConfiguration {
                                 .requestMatchers("/products-in-category/**").permitAll()
                                 .requestMatchers("/shop/**", "/find-products/**").hasAuthority("CUSTOMER")
                 )
+                //보호된 URL에 접근하려고 할 때 리다이렉션이 발생
                 .formLogin(login ->
                         login.loginPage("/login")
                                 .loginProcessingUrl("/do-login")

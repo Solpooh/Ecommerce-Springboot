@@ -41,7 +41,7 @@
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div class="login-box">
-          <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
+          <select id="" class="selectpicker show-tick form-control" data-placeholder="Sign In">
             <option><a href="signup.html">Sign In </a></option>
             <option><a href="signup.html">Sign Up </a></option>
           </select>
@@ -168,11 +168,11 @@
   <div class="col-12 col-sm-8 text-center text-sm-left">
     <div class="toolbar-sorter-right">
       <span>Sort by </span>
-      <select id="basic2" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+      <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD" onchange="location = this.value;">
         <option data-display="Select">Nothing</option>
-        <option value="2">High Price → High Price</option>
-        <option value="3">Low Price → High Price</option>
-        <option value="4">Best Selling</option>
+        <option value="http://localhost:8020/shop/high-price">High Price → Low Price</option>
+        <option value="http://localhost:8020/shop/low-price">Low Price → High Price</option>
+        <option data-display="Select">Best Selling</option>
       </select>
     </div>
     <p>Showing all results</p>
@@ -308,7 +308,7 @@
       <!-- ALL JS FILES -->
       <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
       <script th:src="@{/js/popper.min.js}"></script>
-      <script th:src="@{/js/bootstrap.min.js.}"></script>
+      <script th:src="@{/js/bootstrap.min.js}"></script>
       <!-- ALL PLUGINS -->
       <script th:src="@{/js/jquery.superslides.min.js}"></script>
       <script th:src="@{/js/bootstrap-select.js}"></script>

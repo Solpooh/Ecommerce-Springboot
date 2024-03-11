@@ -55,4 +55,16 @@ public class ProductController {
         model.addAttribute("products", products);
         return "products-in-category";
     }
+
+    @GetMapping("/high-price")
+    public String filterHighPrice(Model model) {
+        List<Category> categories = categoryService.findAllByActivated();
+        List<CategoryDto> categoryDtoList = categoryService.getCategoryAndProduct();
+        List<Product> products = productService.filterHighPrice();
+        model.addAttribute("products", products);
+        model.addAttribute("categoryDtoList", categoryDtoList);
+        model.addAttribute("categories", categories);
+        return "filter-high-price";
+
+    }
 }

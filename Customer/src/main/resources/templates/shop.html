@@ -30,18 +30,7 @@
 <!-- End Top Search -->
 
     <!-- Start All Title Box -->
-    <div class="all-title-box">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Shop Detail</h2>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="home.html">Home</a></li>
-                        <li class="breadcrumb-item active"> Shop Detail</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <div th:replace="~{fragments::slider}">
     </div>
     <!-- End All Title Box -->
 
@@ -144,7 +133,7 @@
     </footer>
 
 
-            <div th:replace="~{fragments::script}"></div>
+    <div th:replace="~{fragments::script}"></div>
 </body>
 
 </html>

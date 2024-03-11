@@ -65,6 +65,16 @@ public class ProductController {
         model.addAttribute("categoryDtoList", categoryDtoList);
         model.addAttribute("categories", categories);
         return "filter-high-price";
+    }
 
+    @GetMapping("/low-price")
+    public String filterLowPrice(Model model) {
+        List<Category> categories = categoryService.findAllByActivated();
+        List<CategoryDto> categoryDtoList = categoryService.getCategoryAndProduct();
+        List<Product> products = productService.filterLowPrice();
+        model.addAttribute("products", products);
+        model.addAttribute("categoryDtoList", categoryDtoList);
+        model.addAttribute("categories", categories);
+        return "filter-low-price";
     }
 }

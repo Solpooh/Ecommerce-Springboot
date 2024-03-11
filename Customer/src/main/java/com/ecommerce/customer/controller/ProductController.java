@@ -46,7 +46,7 @@ public class ProductController {
     }
 
     @GetMapping("/products-in-category/{id}")
-    public String getProductsInCategory(@PathVariable Long categoryId, Model model) {
+    public String getProductsInCategory(@PathVariable("id") Long categoryId, Model model) {
         Category category = categoryService.findById(categoryId);
         List<CategoryDto> categories = categoryService.getCategoryAndProduct();
         List<Product> products = productService.getProductsInCategory(categoryId);

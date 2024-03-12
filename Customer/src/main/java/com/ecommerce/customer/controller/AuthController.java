@@ -38,7 +38,7 @@ public class AuthController {
 
         if (customerDto.getPassword().equals(customerDto.getRepeatPassword())) {
             CustomerDto customerDtoSave = customerService.save(customerDto);
-            attributes.addFlashAttribute("success", "회원가입 성공!!")
+            attributes.addFlashAttribute("success", "회원가입 성공!!");
         }
         return "register";
     }

@@ -30,8 +30,7 @@ public class AuthController {
     @PostMapping("/do-register")
     public String processRegister(@Valid @ModelAttribute("customerDto") CustomerDto customerDto,
                                   BindingResult result,
-                                  Model model,
-                                  RedirectAttributes attributes) {
+                                  Model model) {
         try {
             if (result.hasErrors()) {
                 model.addAttribute("customerDto", new CustomerDto());

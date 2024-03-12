@@ -42,41 +42,41 @@
             <form th:action="@{/do-register}" method="post" th:object="${customerDto}">
                 <div class="input-form">
                     <!-- <span>User name</span> -->
-                    <input type="text" th:field = "*{firstName}" placeholder="First Name" name="">
+                    <input type="text" th:field = "*{firstName}" placeholder="이름" name="">
                 </div>
                 <div class="alert alert-danger" th:if="${#fields.hasErrors('firstName')}"
                      th:errors = "*{firstName}"
                 ></div>
                 <div class="input-form">
                     <!-- <span>User name</span> -->
-                    <input type="text" th:field = "*{lastName}" placeholder="Last Name" name="">
+                      <input type="text" th:field = "*{lastName}" placeholder="성" name="">
                 </div>
                 <div class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}"
                      th:errors = "*{lastName}"
                 ></div>
                 <div class="input-form">
                     <!-- <span>User name</span> -->
-                    <input type="email" th:field = "*{username}" placeholder="Username" name="">
+                    <input type="email" th:field = "*{username}" placeholder="아이디" name="">
                 </div>
                 <div class="input-form">
                     <!-- <span>Password</span> -->
-                    <input type="password" th:field = "*{password}" placeholder="Password" name="">
+                    <input type="password" th:field = "*{password}" placeholder="비밀번호" name="">
                 </div>
                 <div class="alert alert-danger" th:if="${#fields.hasErrors('password')}"
                      th:errors = "*{password}"
                 ></div>
                 <div class="input-form">
                     <!-- <span>Password</span> -->
-                    <input type="password" th:field = "*{repeatPassword}" placeholder="Verify password" name="">
+                    <input type="password" th:field = "*{repeatPassword}" placeholder="비밀번호 확인" name="">
                 </div>
                 <div class="input-form">
-                    <p>Do You Already Have An Account ? <a th:href="@{/login}"> Sign in now </a></p>
+                    <p>이미 등록한 계정이 있다면? <a th:href="@{/login}"> 로그인 하세요 ! </a></p>
                 </div>
                 <div class="input-form">
                     <input type="submit" value="Sign up">
                 </div>
             </form>
-            <h3>Log In With Social Network</h3>
+            <h3>소셜 로그인</h3>
             <ul class="icon-dang-nhap">
                 <li><i class="fab fa-facebook-f"></i></i></li>
                 <li><i class="fab fa-google"></i></li>

@@ -32,13 +32,30 @@ public class AuthController {
                                   BindingResult result,
                                   Model model,
                                   RedirectAttributes attributes) {
-        if (result.hasErrors()) {
-            return "register";
-        }
-
-        if (customerDto.getPassword().equals(customerDto.getRepeatPassword())) {
-            CustomerDto customerDtoSave = customerService.save(customerDto);
-            attributes.addFlashAttribute("success", "회원가입 성공!!");
+        try {
+            if (result.hasErrors()) {
+                model.addAttribute("customerDto", new CustomerDto());
+                return "register";
+            }
+            Customer customer = customerService.findByUsername(customerDto.getUsername());
+            if(customer != null){
+                model.addAttribute("username", "이미 등록된 id");
+                model.addAttribute("customerDto", new CustomerDto());
+                return "register";
+            }
+            if(customerDto.getPassword().equals(customerDto.getRepeatPassword())){
+//                customerDto.setPassword(passwordEncoder.encode(customerDto.getPassword()));
+                customerService.save(customerDto);
+                model.addAttribute("success", "회원가입 성공");
+                return "register";
+            }else{
+                model.addAttribute("password", "비밀번호가 일치하지 않습니다");
+                model.addAttribute("customerDto", new CustomerDto());
+                return "register";
+            }
+        }catch (Exception e){
+            model.addAttribute("error", "서버 에러 발생");
+            model.addAttribute("customerDto", new CustomerDto());
         }
         return "register";
     }

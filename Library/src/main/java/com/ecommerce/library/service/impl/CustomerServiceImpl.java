@@ -33,6 +33,11 @@ public class CustomerServiceImpl implements CustomerService {
         return mapperDTO(customerSave);
     }
 
+    @Override
+    public Customer findByUsername(String username) {
+        return customerRepository.findByUsername(username);
+    }
+
     private CustomerDto mapperDTO(Customer customer) {
         CustomerDto customerDto = new CustomerDto();
         customerDto.setFirstName(customer.getFirstName());

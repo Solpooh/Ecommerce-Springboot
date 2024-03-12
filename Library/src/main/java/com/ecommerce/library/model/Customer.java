@@ -1,6 +1,7 @@
 package com.ecommerce.library.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,10 @@ public class Customer {
     @Column(name = "customer_id")
     private Long id;
     private String password;
+
+    @Size(min = 3, max = 15, message = "3~15 글자를 입력해주세요")
     private String firstName;
+    @Size(min = 3, max = 15, message = "3~15 글자를 입력해주세요")
     private String lastName;
     private String username;
     private String country;

@@ -42,9 +42,9 @@
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div class="login-box">
           <select id="" class="selectpicker show-tick form-control" data-placeholder="Sign In" onchange="location = this.value;">
-            <option th:text="${session.username != null} ?   ${session.username} : 'Authentication'"
-            <option th:if="${session.username != null}" value="http://localhost:8020/shop/login">로그인</option>
-            <option value="http://localhost:8020/shop/logout">로그아웃</option>
+            <option th:text="${session.username != null} ?   ${session.username} : 'Authentication'"></option>
+            <option th:if="${session.username == null}" value="http://localhost:8020/shop/login">로그인</option>
+            <option th:if="${session.username != null}" value="http://localhost:8020/shop/logout">로그아웃</option>
             <option value="http://localhost:8020/shop/register">회원가입</option>
           </select>
         </div>

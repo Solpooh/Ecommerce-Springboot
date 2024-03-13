@@ -24,5 +24,5 @@ public class ShoppingCart {
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
-    private Set<CartItem> carItem;
+    private Set<CartItem> cartItem;
 }

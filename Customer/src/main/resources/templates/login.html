@@ -50,11 +50,11 @@
         <div class="form">
             <h2>Log In</h2>
             <div th:if = "${param.error}" class="text-center alert alert-warning">
-                <p>Invalid username or password</p>
+                <p>id나 비밀번호가 틀렸습니다</p>
             </div>
 
             <div th:if = "${param.logout}" class="text-center alert alert-success">
-                <p>You have been logged out</p>
+                <p>로그아웃 되었습니다</p>
             </div>
 
             <form th:action="@{/do-login}" method="post">

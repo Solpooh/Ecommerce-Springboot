@@ -29,7 +29,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         }
 
         Set<CartItem> cartItems = cart.getCartItem();
-        CartItem cartItem = null;
+        CartItem cartItem = findCartItem(cartItems, product.getId());
         if (cartItems == null) {
             cartItems = new HashSet<>();
             if (cartItem == null) {
@@ -41,7 +41,23 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 cartItems.add(cartItem);
                 itemRepository.save(cartItem);
             }
+        } else {
+
         }
         return null;
+    }
+
+    private CartItem findCartItem(Set<CartItem> cartItems, Long productId) {
+        if (cartItems == null) {
+            return null;
+        }
+        CartItem cartItem = null;
+
+        for (CartItem item : cartItems) {
+            if (item.getProduct().getId() == productId) {
+                cartItem = item;
+            }
+        }
+        return cartItem;
     }
 }

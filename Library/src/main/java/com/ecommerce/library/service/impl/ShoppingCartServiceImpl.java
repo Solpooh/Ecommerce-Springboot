@@ -28,6 +28,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             cart = new ShoppingCart();
         }
 
+        // 카트가 비어있지 않으면,,
         Set<CartItem> cartItems = cart.getCartItem();
         CartItem cartItem = findCartItem(cartItems, product.getId());
         if (cartItems == null) {
@@ -42,9 +43,30 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 itemRepository.save(cartItem);
             }
         } else {
-
+            if (cartItem == null) {
+                cartItem = new CartItem();
+                cartItem.setProduct(product);
+                cartItem.setTotalPrice(quantity * product.getCostPrice());
+                cartItem.setQuantity(quantity);
+                cartItem.setCart(cart);
+                cartItems.add(cartItem);
+                itemRepository.save(cartItem);
+            } else {
+                cartItem.setQuantity(cartItem.getQuantity() + quantity);
+                cartItem.setTotalPrice(cartItem.getTotalPrice() + ( quantity * product.getCostPrice()));
+                itemRepository.save(cartItem);
+            }
         }
-        return null;
+        cart.setCartItem(cartItems);
+
+        int totalItems = totalItems(cart.getCartItem());
+        double totalPrice = totalPrice(cart.getCartItem());
+
+        cart.setTotalPrices(totalPrice);
+        cart.setTotalItems(totalItems);
+        cart.setCustomer(customer);
+
+        return cartRepository.save(cart);
     }
 
     private CartItem findCartItem(Set<CartItem> cartItems, Long productId) {
@@ -60,4 +82,24 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         }
         return cartItem;
     }
+
+    private int totalItems(Set<CartItem> cartItems) {
+        int totalItems = 0;
+
+        for (CartItem item : cartItems) {
+            totalItems += item.getQuantity();
+        }
+        return totalItems;
+    }
+
+    private double totalPrice(Set<CartItem> cartItems) {
+        double totalPrice = 0.0;
+
+        for (CartItem item : cartItems) {
+            totalPrice += item.getTotalPrice();
+        }
+
+        return totalPrice;
+    }
+
 }

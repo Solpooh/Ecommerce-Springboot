@@ -3,6 +3,7 @@ package com.ecommerce.library.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -10,6 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "cart_item")
+@EqualsAndHashCode(exclude = "cart")
+
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -58,4 +58,23 @@ public class CartController {
         ShoppingCart cart = cartService.addItemToCart(product, quantity, customer);
         return "redirect:" + request.getHeader("Referer");
     }
+
+    @PostMapping("/update-cart")
+    public String updateCart(@RequestParam("quantity") int quantity,
+                             @RequestParam("id") Long productId,
+                             Model model,
+                             Principal principal) {
+        if (principal == null) {
+            return "redirect:/login";
+        } else {
+            String username = principal.getName();
+            Customer customer = customerService.findByUsername(username);
+            Product product = productService.getProductById(productId);
+            ShoppingCart cart = cartService.updateItemInCart(product, quantity, customer);
+
+            model.addAttribute("shoppingCart", cart);
+
+            return "redirect:/cart";
+        }
+    }
 }

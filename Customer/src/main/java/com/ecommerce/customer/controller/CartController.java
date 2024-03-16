@@ -35,6 +35,7 @@ public class CartController {
         if (shoppingCart == null) {
             model.addAttribute("check", "장바구니가 비었습니다");
         }
+        model.addAttribute("subTotal", shoppingCart.getTotalPrices());
         model.addAttribute("shoppingCart", shoppingCart);
 
         return "cart";

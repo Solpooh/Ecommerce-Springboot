@@ -126,8 +126,8 @@
           <li class="side-menu">
             <a th:href="@{/cart}">
               <i class="fa fa-shopping-bag"></i>
-              <span class="badge" th:text="${session.totalItems == null ? '0' : session.totalItems}"></span>
-              <p>My Cart</p>
+              <span class="badge" th:text="${session.totalItems == null} ? '0' : ${session.totalItems}"></span>
+              <p>내 장바구니</p>
             </a>
           </li>
         </ul>
@@ -155,7 +155,7 @@
             <p>1 - <span class="price">$40.00</span></p>
           </li>
           <li class="total">
-            <a href="cart.html" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+            <a href="cart" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
             <span class="float-right"><strong>Total</strong>: $180.00</span>
           </li>
         </ul>
@@ -172,9 +172,9 @@
       <span>Sort by </span>
       <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD" onchange="location = this.value;">
         <option data-display="Select">Nothing</option>
-        <option value="http://localhost:8020/shop/high-price">High Price → Low Price</option>
-        <option value="http://localhost:8020/shop/low-price">Low Price → High Price</option>
-        <option data-display="Select">Best Selling</option>
+        <option value="http://localhost:8020/shop/high-price">높은가격순</option>
+        <option value="http://localhost:8020/shop/low-price">낮은가격순</option>
+        <option data-display="Select">베스트</option>
       </select>
     </div>
     <p>Showing all results</p>

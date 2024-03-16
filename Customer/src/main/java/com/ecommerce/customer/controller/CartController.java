@@ -47,7 +47,6 @@ public class CartController {
             @RequestParam("id") Long productId,
             @RequestParam(value = "quantity", required = false, defaultValue = "1") int quantity,
             Principal principal,
-            Model model,
             HttpServletRequest request) {
         if (principal == null) {
             return "redirect:/login";

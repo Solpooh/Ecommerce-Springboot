@@ -10,9 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -59,7 +57,7 @@ public class CartController {
         return "redirect:" + request.getHeader("Referer");
     }
 
-    @PostMapping("/update-cart")
+    @RequestMapping(value = "/update-cart", method = RequestMethod.POST, params = "action=update")
     public String updateCart(@RequestParam("quantity") int quantity,
                              @RequestParam("id") Long productId,
                              Model model,
@@ -78,7 +76,7 @@ public class CartController {
         }
     }
 
-    @PostMapping("/delete-cart")
+    @RequestMapping(value = "/update-cart", method = RequestMethod.POST, params = "action=delete")
     public String deleteItemFromCart(@RequestParam("id") Long productId,
                                      Model model,
                                      Principal principal) {

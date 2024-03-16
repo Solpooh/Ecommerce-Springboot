@@ -77,4 +77,22 @@ public class CartController {
             return "redirect:/cart";
         }
     }
+
+    @PostMapping("/delete-cart")
+    public String deleteItemFromCart(@RequestParam("id") Long productId,
+                                     Model model,
+                                     Principal principal) {
+        if (principal == null) {
+            return "redirect:/login";
+        } else {
+            String username = principal.getName();
+            Customer customer = customerService.findByUsername(username);
+            Product product = productService.getProductById(productId);
+            ShoppingCart cart = cartService.deleteItemFromCart(product, customer);
+
+            model.addAttribute("shoppingCart", cart);
+
+            return "redirect:/cart";
+        }
+    }
 }

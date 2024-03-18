@@ -18,16 +18,12 @@ public class OrderController {
         if (principal == null) {
             return "redirect:/login";
         }
-
         String username = principal.getName();
-
         Customer customer = customerService.findByUsername(username);
-
         if (customer.getPhoneNumber() == null && customer.getAddress() == null
                 & customer.getCity() == null & customer.getCountry() == null) {
             return "account";
         }
-
 
         return "checkout";
     }

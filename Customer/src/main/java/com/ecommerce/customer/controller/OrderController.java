@@ -20,8 +20,10 @@ public class OrderController {
         }
         String username = principal.getName();
         Customer customer = customerService.findByUsername(username);
-        if (customer.getPhoneNumber() == null && customer.getAddress() == null
-                & customer.getCity() == null & customer.getCountry() == null) {
+        if (customer.getPhoneNumber().trim().isEmpty() && customer.getAddress().trim().isEmpty()
+                & customer.getCity().trim().isEmpty() & customer.getCountry().trim().isEmpty()) {
+            model.addAttribute("customer", customer);
+            model.addAttribute("error", "결제 전 개인정보를 입력해주세요");
             return "account";
         }
 

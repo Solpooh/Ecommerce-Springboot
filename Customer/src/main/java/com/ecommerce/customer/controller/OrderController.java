@@ -1,6 +1,7 @@
 package com.ecommerce.customer.controller;
 
 import com.ecommerce.library.model.Customer;
+import com.ecommerce.library.model.Order;
 import com.ecommerce.library.model.ShoppingCart;
 import com.ecommerce.library.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class OrderController {
@@ -36,7 +38,16 @@ public class OrderController {
     }
 
     @GetMapping("/order")
-    public String order() {
+    public String order(Principal principal, Model model) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
+
+        String username = principal.getName();
+        Customer customer = customerService.findByUsername(username);
+        List<Order> orderList = customer.getOrders();
+        model.addAttribute("orders", orderList);
+
         return "order";
     }
 }

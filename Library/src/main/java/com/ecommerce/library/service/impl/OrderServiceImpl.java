@@ -4,6 +4,7 @@ import com.ecommerce.library.model.CartItem;
 import com.ecommerce.library.model.Order;
 import com.ecommerce.library.model.OrderDetail;
 import com.ecommerce.library.model.ShoppingCart;
+import com.ecommerce.library.repository.CartItemRepository;
 import com.ecommerce.library.repository.OrderDetailRepository;
 import com.ecommerce.library.repository.OrderRepository;
 import com.ecommerce.library.repository.ShoppingCartRepository;
@@ -27,6 +28,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private ShoppingCartRepository cartRepository;
+
+    @Autowired
+    private CartItemRepository cartItemRepository;
+
     @Override
     public void saveOrder(ShoppingCart cart) {
         Order order = new Order();
@@ -43,6 +48,7 @@ public class OrderServiceImpl implements OrderService {
             orderDetail.setUnitPrice(item.getProduct().getCostPrice());
             orderDetailRepository.save(orderDetail);
             orderDetailList.add(orderDetail);
+            cartItemRepository.delete(item);
         }
 
         order.setOrderDetailList(orderDetailList);

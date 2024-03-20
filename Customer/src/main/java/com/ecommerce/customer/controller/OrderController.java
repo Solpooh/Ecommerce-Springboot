@@ -4,6 +4,7 @@ import com.ecommerce.library.model.Customer;
 import com.ecommerce.library.model.Order;
 import com.ecommerce.library.model.ShoppingCart;
 import com.ecommerce.library.service.CustomerService;
+import com.ecommerce.library.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,10 @@ import java.util.List;
 public class OrderController {
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private OrderService orderService;
+
     @GetMapping("/check-out")
     public String checkout(Model model, Principal principal) {
         if (principal == null) {
@@ -49,5 +54,18 @@ public class OrderController {
         model.addAttribute("orders", orderList);
 
         return "order";
+    }
+
+    @GetMapping("/save-order")
+    public String saveOrder(Principal principal) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
+        String username = principal.getName();
+        Customer customer = customerService.findByUsername(username);
+        ShoppingCart cart = customer.getShoppingCart();
+        orderService.saveOrder(cart);
+
+        return "redirect:/order";
     }
 }

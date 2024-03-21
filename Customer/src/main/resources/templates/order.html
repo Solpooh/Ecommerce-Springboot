@@ -48,24 +48,25 @@
               </tr>
               </thead>
               <tbody>
-              <tr>
+              <tr th:each="order : ${orders}">
                 <td class="order-date">
-                  <span><b>27-1-2022</b></span>
+                  <span><b th:text="${order.orderDate}"></b></span>
                 </td>
-                <td class="name-pr">
-                  <a href="#">
-                    29-1-2022
-                  </a>
+                <td class="name-pr" th:if="${order.deliveryDate != null}">
+                  <p th:text="${order.deliveryDate}">
+                  </p>
+                </td>
+                <td class="name-pr" th:if="${order.deliveryDate == null}">
+                  <p>대기중...</p>
                 </td>
                 <td class="price-pr">
-                  <p>Completed</p>
+                  <p th:text="${order.orderStatus}"></p>
                 </td>
-                <td class="quantity-box"> 1</td>
                 <td class="total-pr">
-                  <p style="color: red">$ 80.0</p>
+                  <p style="color: red" th:text="${'$' + order.totalPrice}"></p>
                 </td>
                 <td class="total-pr" style="color: black">
-                  <span></span>Credit Cart</span>
+                  <span></span>카드 결제</span>
                 </td>
                 <td>
                   <button class="button-cancel">Cancel</button>

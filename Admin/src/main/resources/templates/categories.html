@@ -36,8 +36,8 @@
                     <div th:if="${success}" class="text-center alert alert-success">
                         <p th:text="${success}"></p>
                     </div>
-                    <div th:if="${failed}" class="text-center alert alert-danger">
-                        <p th:text="${failed}"></p>
+                    <div th:if="${param.failed}" class="text-center alert alert-danger">
+                        <p th:text="${param.failed}"></p>
                     </div>
 
                     <table class="table table-bordered" th:if="${size > 0}">

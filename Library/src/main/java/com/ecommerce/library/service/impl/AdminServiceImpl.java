@@ -26,6 +26,8 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Admin save(AdminDto adminDto) {
         Admin admin = new Admin();
+
+        // dto에서 받은 값들로 DB에 저장
         admin.setFirstName(adminDto.getFirstName());
         admin.setLastName(adminDto.getLastName());
         admin.setUsername(adminDto.getUsername());

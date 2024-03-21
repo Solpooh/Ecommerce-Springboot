@@ -43,7 +43,7 @@ public class ProductController {
             return "redirect:/login";
         }
         Page<ProductDto> products = productService.pageProducts(pageNo);
-        model.addAttribute("title", "Manage Products");
+        model.addAttribute("title", "상품 관리");
         model.addAttribute("size", products.getSize());
         model.addAttribute("products", products);
         model.addAttribute("currentPage", pageNo);

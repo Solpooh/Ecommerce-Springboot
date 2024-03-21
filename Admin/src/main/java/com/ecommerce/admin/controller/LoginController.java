@@ -35,6 +35,8 @@ public class LoginController {
     public String home(Model model) {
         model.addAttribute("title", "홈페이지");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        // 인증이 안된 경우
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             return "redirect:/login";
         }
@@ -62,6 +64,8 @@ public class LoginController {
                 result.toString();
                 return "register";
             }
+
+            // id(이메일) 가져오기
             String username = adminDto.getUsername();
             Admin admin = adminService.findByUsername(username);
             if(admin != null) {

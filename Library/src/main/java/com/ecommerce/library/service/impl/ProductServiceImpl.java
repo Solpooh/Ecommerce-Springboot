@@ -81,7 +81,7 @@ public class ProductServiceImpl implements ProductService {
             if (imageProduct == null) {
                 product.setImage(product.getImage());
             } else {
-                if (imageUpload.checkExisted(imageProduct) == false) {
+                if (!imageUpload.checkExisted(imageProduct)) {
                     imageUpload.uploadImage(imageProduct);
                 }
                 product.setImage(Base64.getEncoder().encodeToString(imageProduct.getBytes()));

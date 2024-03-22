@@ -58,4 +58,17 @@ public class OrderServiceImpl implements OrderService {
         cartRepository.save(cart);
         orderRepository.save(order);
     }
+
+    @Override
+    public void acceptOrder(Long id) {
+        Order order = orderRepository.getReferenceById(id);
+        order.setDeliveryDate(new Date());
+        order.setOrderStatus("배송중");
+        orderRepository.save(order);
+    }
+
+    @Override
+    public void cancelOrder(Long id) {
+        orderRepository.deleteById(id);
+    }
 }

@@ -25,6 +25,7 @@ public class LoginController {
     private AdminServiceImpl adminService;
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
     @GetMapping("/login")
     public String loginForm(Model model) {
         model.addAttribute("title", "로그인");
@@ -49,13 +50,15 @@ public class LoginController {
         model.addAttribute("adminDto", new AdminDto());
         return "register";
     }
+
     @GetMapping("/forgot-password")
     public String forgotPassword(Model model) {
         model.addAttribute("title", "비밀번호 찾기");
         return "forgot-password";
     }
+
     @PostMapping("/register-new")
-    public String addNewAdmin(@Valid @ModelAttribute("adminDto")AdminDto adminDto,
+    public String addNewAdmin(@Valid @ModelAttribute("adminDto") AdminDto adminDto,
                               BindingResult result,
                               Model model) {
         try {
@@ -68,7 +71,7 @@ public class LoginController {
             // id(이메일) 가져오기
             String username = adminDto.getUsername();
             Admin admin = adminService.findByUsername(username);
-            if(admin != null) {
+            if (admin != null) {
                 model.addAttribute("adminDto", adminDto);
                 System.out.println("admin not null");
                 model.addAttribute("emailError", "이미 등록된 이메일입니다");
@@ -87,7 +90,7 @@ public class LoginController {
                 System.out.println("password not same");
                 return "redirect:/register";
             }
-
+            
 
         } catch (Exception e) {
             e.printStackTrace();

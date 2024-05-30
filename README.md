@@ -1,1 +1,1 @@
-JPA, Thymeleaf, Spring Boot, MySQL, Spring Security,
+Ecommerce JPA, Thymeleaf, Spring Boot, MySQL, Spring Security,
